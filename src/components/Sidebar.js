@@ -9,10 +9,10 @@ import { gsap } from "gsap";
 
 const Sidebar = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
-  let sidebarTimeline = useRef();
-  const searchBarRef = useRef();
-  const filterButtonRef = useRef();
-  const orderByButtonRef = useRef();
+  let sidebarTimeline = useRef(null);
+  const searchBarRef = useRef(null);
+  const filterButtonRef = useRef(null);
+  const orderByButtonRef = useRef(null);
 
   useEffect(() => {
     sidebarTimeline.current = gsap.timeline();

@@ -5,14 +5,15 @@ import ThemeContext from "contexts/ThemeContext";
 const FilterButton = React.forwardRef(({}, ref) => {
   const { isDarkMode } = useContext(ThemeContext);
   const [isDropdown, setDropdown] = useState(false);
-  const handleClick = () => {
-    setDropdown(!isDropdown);
-  };
+
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={() => setDropdown(true)}
+      onMouseLeave={() => setDropdown(false)}
+    >
       <button
         ref={ref}
-        onClick={handleClick}
         className={`flex w-full justify-center items-center ${
           isDarkMode ? "bg-gray-800" : "bg-gray-300"
         } px-2 py-2 rounded-xl space-x-2`}
@@ -30,7 +31,7 @@ const FilterButton = React.forwardRef(({}, ref) => {
       </button>
       {isDropdown && (
         <div
-          className={`w-full mt-1 rounded-md absolute z-30 ${
+          className={`w-full rounded-md absolute z-30 ${
             isDarkMode ? "bg-gray-800" : "bg-gray-300"
           }`}
         >
