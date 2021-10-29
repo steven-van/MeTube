@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import OrderByIcon from "components/UI/OrderByIcon";
 import ThemeContext from "contexts/ThemeContext";
 
-const OrderByButton = () => {
+const OrderByButton = React.forwardRef(({}, ref) => {
   const { isDarkMode } = useContext(ThemeContext);
   return (
-    <div
-      className={`flex justify-center items-center ${
+    <button
+      ref={ref}
+      className={`flex w-full justify-center items-center ${
         isDarkMode ? "bg-gray-800" : "bg-gray-300"
       } px-2 py-2 rounded-xl space-x-2`}
     >
@@ -18,8 +19,8 @@ const OrderByButton = () => {
       >
         Order by
       </p>
-    </div>
+    </button>
   );
-};
+});
 
 export default OrderByButton;

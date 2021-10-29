@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import FilterIcon from "components/UI/FilterIcon";
 import ThemeContext from "contexts/ThemeContext";
 
-const FilterButton = () => {
+const FilterButton = React.forwardRef(({}, ref) => {
   const { isDarkMode } = useContext(ThemeContext);
   return (
-    <div
-      className={`flex justify-center items-center ${
+    <button
+      ref={ref}
+      className={`flex w-full justify-center items-center ${
         isDarkMode ? "bg-gray-800" : "bg-gray-300"
       } px-2 py-2 rounded-xl space-x-2`}
     >
@@ -18,8 +19,8 @@ const FilterButton = () => {
       >
         Filter
       </p>
-    </div>
+    </button>
   );
-};
+});
 
 export default FilterButton;

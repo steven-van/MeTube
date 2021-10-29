@@ -1,13 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import CentralPayLogo from "components/UI/CentralPayLogo";
 import Searchbar from "components/Searchbar";
 import FilterButton from "components/FilterButton";
 import OrderByButton from "components/OrderByButton";
 import DarkModeToggle from "react-dark-mode-toggle";
 import ThemeContext from "contexts/ThemeContext";
+import { gsap } from "gsap";
 
 const Sidebar = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
+  let sidebarTimeline = useRef();
+  const searchBarRef = useRef();
+  const filterButtonRef = useRef();
+  const orderByButtonRef = useRef();
+
+  useEffect(() => {
+    sidebarTimeline.current = gsap.timeline();
+    sidebarTimeline.current
+      .from(searchBarRef.current, {
+        x: "-100%",
+        ease: "back.out(1)",
+      })
+      .from(filterButtonRef.current, { y: "100%", opacity: 0 })
+      .from(orderByButtonRef.current, { y: "100%", opacity: 0 });
+  }, [isDarkMode]);
   return (
     <div
       className={`relative h-full w-2/5 lg:w-1/5 ${
@@ -17,12 +33,12 @@ const Sidebar = () => {
       <div className="w-32 lg:w-40 2xl:w-48">
         <CentralPayLogo />
       </div>
-      <div className="mt-12 w-4/5">
+      <div ref={searchBarRef} className="mt-12 w-4/5">
         <Searchbar />
       </div>
       <div className="mt-12 space-y-4 w-3/5 2xl:w-2/5 ">
-        <FilterButton />
-        <OrderByButton />
+        <FilterButton ref={filterButtonRef} />
+        <OrderByButton ref={orderByButtonRef} />
       </div>
       <div className="flex absolute bottom-0 pb-4">
         <DarkModeToggle
