@@ -8,7 +8,7 @@ const FilterButton = React.forwardRef(({}, ref) => {
   const handleClick = () => {
     setDropdown(!isDropdown);
   };
-  
+
   const dropdownRef = useRef();
 
   useEffect(() => {
@@ -29,9 +29,10 @@ const FilterButton = React.forwardRef(({}, ref) => {
 
 
   return (
-    <div className="relative" onClick={handleClick} ref={dropdownRef}>
+    <div className="relative"  ref={dropdownRef}>
       <button
         ref={ref}
+        onClick={handleClick}
         className={`flex w-full justify-center items-center ${
           isDarkMode ? "bg-gray-800" : "bg-gray-300"
         } px-2 py-2 rounded-xl space-x-2`}
