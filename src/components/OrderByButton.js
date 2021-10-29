@@ -1,19 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import OrderByIcon from "components/UI/OrderByIcon";
 import ThemeContext from "contexts/ThemeContext";
 
 const OrderByButton = React.forwardRef(({}, ref) => {
   const { isDarkMode } = useContext(ThemeContext);
   const [isDropdown, setDropdown] = useState(false);
+  const handleClick = () => {
+    setDropdown(!isDropdown);
+  };
+
+  const dropdownRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        isDropdown &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        setDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdown]);
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setDropdown(true)}
-      onMouseLeave={() => setDropdown(false)}
-    >
+    <div className="relative" ref={dropdownRef}>
       <button
         ref={ref}
+        onClick={handleClick}
         className={`flex w-full justify-center items-center ${
           isDarkMode ? "bg-gray-800" : "bg-gray-300"
         } px-2 py-2 rounded-xl space-x-2`}
@@ -31,7 +49,7 @@ const OrderByButton = React.forwardRef(({}, ref) => {
       </button>
       {isDropdown && (
         <div
-          className={` w-full rounded-md absolute z-20 ${
+          className={` w-full mt-1 rounded-md absolute z-20 ${
             isDarkMode ? "bg-gray-800" : "bg-gray-300"
           }`}
         >

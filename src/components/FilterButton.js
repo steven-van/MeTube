@@ -1,17 +1,35 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import FilterIcon from "components/UI/FilterIcon";
 import ThemeContext from "contexts/ThemeContext";
 
 const FilterButton = React.forwardRef(({}, ref) => {
   const { isDarkMode } = useContext(ThemeContext);
   const [isDropdown, setDropdown] = useState(false);
+  const handleClick = () => {
+    setDropdown(!isDropdown);
+  };
+  
+  const dropdownRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        isDropdown &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        setDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdown]);
+
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setDropdown(true)}
-      onMouseLeave={() => setDropdown(false)}
-    >
+    <div className="relative" onClick={handleClick} ref={dropdownRef}>
       <button
         ref={ref}
         className={`flex w-full justify-center items-center ${
@@ -31,7 +49,7 @@ const FilterButton = React.forwardRef(({}, ref) => {
       </button>
       {isDropdown && (
         <div
-          className={`w-full rounded-md absolute z-30 ${
+          className={`w-full mt-1 rounded-md absolute z-30 ${
             isDarkMode ? "bg-gray-800" : "bg-gray-300"
           }`}
         >
