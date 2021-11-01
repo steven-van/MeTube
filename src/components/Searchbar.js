@@ -1,23 +1,11 @@
 import React, { useContext, useState } from "react";
 import LensIcon from "components/UI/LensIcon";
 import ThemeContext from "contexts/ThemeContext";
-import youtube from "apis/youtube";
 import VideoContext from "contexts/VideoContext";
 
 const Searchbar = () => {
-  const { setState } = useContext(VideoContext);
+  const { getVideos } = useContext(VideoContext);
   const [inputText, setInputText] = useState(null);
-
-  const handleSubmit = async () => {
-    const response = await youtube.get("/search", {
-      params: {
-        q: inputText,
-      },
-    });
-
-    setState({ videos: response.data.items });
-    console.log(response.data.items);
-  };
 
   const { isDarkMode } = useContext(ThemeContext);
 
@@ -34,7 +22,7 @@ const Searchbar = () => {
         placeholder={"Search..."}
         onChange={(e) => setInputText(e.target.value)}
       />
-      <div onClick={handleSubmit} className="w-5 cursor-pointer">
+      <div onClick={() => getVideos(inputText)} className="w-5 cursor-pointer">
         <LensIcon />
       </div>
     </div>
