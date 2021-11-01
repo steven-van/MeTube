@@ -21,8 +21,8 @@ const Sidebar = () => {
         x: "-100%",
         ease: "back.out(1)",
       })
-      .from(filterButtonRef.current, { y: "100%", opacity: 0 })
-      .from(orderByButtonRef.current, { y: "100%", opacity: 0 });
+      .from(filterButtonRef.current, { y: "100%", opacity: 0, duration: 0.5 })
+      .from(orderByButtonRef.current, { y: "100%", opacity: 0, duration: 0.5});
   }, [isDarkMode]);
   return (
     <div
@@ -46,7 +46,7 @@ const Sidebar = () => {
             setIsDarkMode(!isDarkMode);
           }}
           checked={isDarkMode}
-          className=" focus:outline-none"
+          className="focus:outline-none"
         />
       </div>
     </div>

@@ -27,9 +27,8 @@ const FilterButton = React.forwardRef(({}, ref) => {
     };
   }, [isDropdown]);
 
-
   return (
-    <div className="relative"  ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
       <button
         ref={ref}
         onClick={handleClick}
