@@ -4,7 +4,7 @@ import ContentContext from "contexts/ContentContext";
 import ChannelItem from "components/ChannelItem";
 import PlaylistItem from "components/PlaylistItem";
 
-const VideoSection = () => {
+const ContentSection = () => {
   const { state, contentType } = useContext(ContentContext);
 
   const renderContents = (type = "video") => {
@@ -58,4 +58,4 @@ const VideoSection = () => {
   );
 };
 
-export default VideoSection;
+export default ContentSection;
