@@ -5,10 +5,12 @@ import FilterButton from "components/FilterButton";
 import OrderByButton from "components/OrderByButton";
 import DarkModeToggle from "react-dark-mode-toggle";
 import ThemeContext from "contexts/ThemeContext";
+import ContentContext from "contexts/ContentContext";
 import { gsap } from "gsap";
 
 const Sidebar = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
+  const { contentType } = useContext(ContentContext);
   let sidebarTimeline = useRef(null);
   const searchBarRef = useRef(null);
   const filterButtonRef = useRef(null);
@@ -38,7 +40,7 @@ const Sidebar = () => {
       </div>
       <div className="mt-12 space-y-4 w-3/5 2xl:w-2/5 ">
         <FilterButton ref={filterButtonRef} />
-        <OrderByButton ref={orderByButtonRef} />
+        {contentType === "video" && <OrderByButton ref={orderByButtonRef} />}
       </div>
       <div className="flex absolute bottom-0 pb-4">
         <DarkModeToggle
