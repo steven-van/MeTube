@@ -31,10 +31,7 @@ const VideoItem = ({ video, videoStats }) => {
               isDarkMode ? "text-gray-400" : "text-gray-500"
             }`}
           >
-            {videoStats.statistics.viewCount
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-            views
+            {videoStats.statistics.viewCount} views
           </p>
         </div>
       </div>
