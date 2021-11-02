@@ -47,7 +47,6 @@ const ContentSection = () => {
         }
         return contents;
       default:
-        return contents;
     }
   };
 
