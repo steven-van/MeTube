@@ -8,8 +8,9 @@ import SearchContext from "contexts/SearchContext";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => true);
-  const [state, setState] = useState({ contents: [], videosStats: [] });
+  const [state, setState] = useState({ contents: [], contentStats: [] });
   const [contentType, setContentType] = useState("video");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getContents = async (searchTerm, type = "video") => {
     const responseSnippet = await youtube().get("/search", {
@@ -34,11 +35,32 @@ const App = () => {
         },
       });
 
-      console.log("hello");
+      console.log(responseStats.data.items);
 
       setState((prevState) => ({
         ...prevState,
-        videosStats: responseStats.data.items,
+        contentStats: responseStats.data.items,
+      }));
+    }
+
+    if (type === "channel") {
+      const channelIds = responseSnippet.data.items
+        .map((item) => {
+          return item.id.channelId;
+        })
+        .join(",");
+
+      const responseStats = await youtube("statistics").get("channels", {
+        params: {
+          id: channelIds,
+        },
+      });
+
+      console.log(responseStats.data.items);
+
+      setState((prevState) => ({
+        ...prevState,
+        contentStats: responseStats.data.items,
       }));
     }
 
@@ -48,7 +70,11 @@ const App = () => {
     }));
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
+  // const orderByViews = (videos) => {
+  //   const sortedVideos = videos.sort((a, b) =>
+  //     a.snippet.publishedTime > b.snippet.publishedTime ? 1 : -1
+  //   );
+  // };
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
@@ -58,7 +84,7 @@ const App = () => {
         }`}
       >
         <ContentContext.Provider
-          value={{ state, setState, getContents, contentType, setContentType }}
+          value={{ state, getContents, contentType, setContentType }}
         >
           <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
             <Sidebar />
