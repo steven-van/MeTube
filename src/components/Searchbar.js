@@ -5,7 +5,7 @@ import ContentContext from "contexts/ContentContext";
 import SearchContext from "contexts/SearchContext";
 
 const Searchbar = () => {
-  const { getContents } = useContext(ContentContext);
+  const { getContents, setContentType } = useContext(ContentContext);
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
 
   const { isDarkMode } = useContext(ThemeContext);
@@ -24,7 +24,10 @@ const Searchbar = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <div
-        onClick={() => searchTerm.trim() !== "" && getContents(searchTerm)}
+        onClick={() =>
+          searchTerm.trim() !== "" &&
+          (setContentType("video"), getContents(searchTerm))
+        }
         className="w-5 cursor-pointer"
       >
         <LensIcon />
