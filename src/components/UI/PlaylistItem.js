@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ThemeContext from "contexts/ThemeContext";
 
-const VideoItem = ({ video, videoStats }) => {
+const VideoItem = ({ video }) => {
   const { isDarkMode } = useContext(ThemeContext);
   return (
     <div className="w-80 h-44 xl:w-96 xl:h-56">
