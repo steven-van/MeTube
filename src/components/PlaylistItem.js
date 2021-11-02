@@ -5,7 +5,7 @@ const PlaylistItem = ({ video }) => {
   const { isDarkMode } = useContext(ThemeContext);
   const playlistLink = `https://www.youtube.com/playlist?list=${video.id.playlistId}`;
   return (
-    <div className="w-64 h-40 xl:w-80 xl:h-44">
+    <div className="w-48 h-32 xl:w-64 xl:h-40 2xl:w-80 2xl:h-44">
       <a href={playlistLink} target="_blank" rel="noopener noreferrer">
         <img
           className="rounded w-full h-full"

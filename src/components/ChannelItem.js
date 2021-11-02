@@ -15,14 +15,14 @@ const ChannelItem = ({ channel, channelStats }) => {
       </a>
       <div className="text-center">
         <p
-          className={`font-medium ${
+          className={`font-medium overflow-ellipsis overflow-hidden whitespace-nowrap ${
             isDarkMode ? "text-gray-400" : "text-gray-500"
           }`}
         >
           {channel.snippet.channelTitle}
         </p>
         <p
-          className={`font-medium ${
+          className={`font-medium overflow-ellipsis overflow-hidden whitespace-nowrap ${
             isDarkMode ? "text-gray-400" : "text-gray-500"
           }`}
         >

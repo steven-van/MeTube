@@ -8,7 +8,7 @@ const VideoItem = ({ video, videoStats }) => {
   const [isShown, setShown] = useState(false);
   return (
     <>
-      <div className="w-64 h-40 xl:w-80 xl:h-44">
+      <div className="w-48 h-32 xl:w-64 xl:h-40 2xl:w-80 2xl:h-44">
         <img
           onClick={() => setShown(true)}
           className="cursor-pointer rounded-lg w-full h-full"
@@ -25,14 +25,14 @@ const VideoItem = ({ video, videoStats }) => {
           </p>
           <div className="flex justify-between">
             <p
-              className={`font-medium ${
+              className={`font-medium overflow-ellipsis overflow-hidden whitespace-nowrap ${
                 isDarkMode ? "text-gray-400" : "text-gray-500"
               }`}
             >
               {video.snippet.channelTitle}
             </p>
             <p
-              className={`font-medium ${
+              className={`font-medium overflow-ellipsis overflow-hidden whitespace-nowrap ${
                 isDarkMode ? "text-gray-400" : "text-gray-500"
               }`}
             >
