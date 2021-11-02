@@ -1,9 +1,14 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import FilterIcon from "components/UI/FilterIcon";
 import ThemeContext from "contexts/ThemeContext";
+import ContentContext from "contexts/ContentContext";
+import SearchContext from "contexts/SearchContext";
 
 const FilterButton = React.forwardRef(({}, ref) => {
   const { isDarkMode } = useContext(ThemeContext);
+  const { getContents, contentType, setContentType } =
+    useContext(ContentContext);
+  const { searchTerm } = useContext(SearchContext);
   const [isDropdown, setDropdown] = useState(false);
   const handleClick = () => {
     setDropdown(!isDropdown);
@@ -59,6 +64,11 @@ const FilterButton = React.forwardRef(({}, ref) => {
             } font-medium`}
           >
             <button
+              onClick={() =>
+                contentType !== "video"
+                  ? (setContentType("video"), getContents(searchTerm, "video"))
+                  : ""
+              }
               className={`block w-full text-left px-4 py-1 rounded-t-md hover:bg-gray-600 ${
                 isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
               }`}
@@ -66,6 +76,10 @@ const FilterButton = React.forwardRef(({}, ref) => {
               Videos
             </button>
             <button
+              onClick={() =>
+                contentType !== "channel" &&
+                (setContentType("channel"), getContents(searchTerm, "channel"))
+              }
               className={`block w-full text-left px-4 py-1 hover:bg-gray-600 ${
                 isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
               }`}
@@ -73,6 +87,11 @@ const FilterButton = React.forwardRef(({}, ref) => {
               Channels
             </button>
             <button
+              onClick={() =>
+                contentType !== "playlist" &&
+                (setContentType("playlist"),
+                getContents(searchTerm, "playlist"))
+              }
               className={`block w-full text-left px-4 py-1 pb-1 hover:bg-gray-600 ${
                 isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
               }`}
