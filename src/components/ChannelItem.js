@@ -5,7 +5,7 @@ const ChannelItem = ({ channel, channelStats }) => {
   const { isDarkMode } = useContext(ThemeContext);
   const channelLink = `https://www.youtube.com/channel/${channel.id.channelId}`;
   return (
-    <div className="flex flex-col justify-center items-center space-y-2 w-32 h-32 xl:w-64 xl:h-64">
+    <div className="flex flex-col justify-center items-center space-y-2 w-24 h-24 xl:w-48 xl:h-48">
       <a href={channelLink} target="_blank" rel="noopener noreferrer">
         <img
           className="rounded-full w-full h-full"

@@ -8,7 +8,7 @@ const VideoItem = ({ video, videoStats }) => {
   const [isShown, setShown] = useState(false);
   return (
     <>
-      <div className="w-80 h-44 xl:w-96 xl:h-56">
+      <div className="w-64 h-40 xl:w-80 xl:h-44">
         <img
           onClick={() => setShown(true)}
           className="cursor-pointer rounded-lg w-full h-full"
