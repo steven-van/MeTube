@@ -23,7 +23,10 @@ const Searchbar = () => {
         placeholder={"Search..."}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div onClick={() => getContents(searchTerm)} className="w-5 cursor-pointer">
+      <div
+        onClick={() => searchTerm.trim() !== "" && getContents(searchTerm)}
+        className="w-5 cursor-pointer"
+      >
         <LensIcon />
       </div>
     </div>
