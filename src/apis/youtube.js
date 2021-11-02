@@ -1,13 +1,17 @@
 import axios from "axios";
-const KEY = "AIzaSyC75Ra_MsHgHl0Ab_qompiB4CPpHf0KcFs";
+const KEY = "AIzaSyDEaKyLsxJSKzxDd4t1jR43D35JpZXt-wE";
 
-export default axios.create({
-  baseURL: "https://www.googleapis.com/youtube/v3/",
-  params: {
-    part: "snippet",
-    maxResults: 10,
-    key: KEY,
-  },
-  timeout: 1000,
-  headers: {},
-});
+const youtube = (part = "snippet") => {
+  return axios.create({
+    baseURL: "https://www.googleapis.com/youtube/v3/",
+    params: {
+      part: part,
+      maxResults: 10,
+      key: KEY,
+    },
+    timeout: 1000,
+    headers: {},
+  });
+};
+
+export default youtube;
