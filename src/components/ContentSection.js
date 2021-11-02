@@ -18,7 +18,7 @@ const VideoSection = () => {
             <VideoItem
               key={state.contents[i].id.videoId}
               video={state.contents[i]}
-              videoStats={state.videosStats[i]}
+              videoStats={state.contentStats[i]}
             />
           );
         }
@@ -28,8 +28,9 @@ const VideoSection = () => {
         for (let i = 0; i < state.contents.length; i += 1) {
           contents.push(
             <ChannelItem
-              key={state.contents[i].snippet.channelId}
+              key={state.contents[i].id.channelId}
               channel={state.contents[i]}
+              channelStats={state.contentStats[i]}
             />
           );
         }
@@ -39,9 +40,8 @@ const VideoSection = () => {
         for (let i = 0; i < state.contents.length; i += 1) {
           contents.push(
             <PlaylistItem
-              key={state.contents[i].id.videoId}
+              key={state.contents[i].id.playListId}
               video={state.contents[i]}
-              videoStats={state.videosStats[i]}
             />
           );
         }
