@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import LensIcon from "components/UI/LensIcon";
 import ThemeContext from "contexts/ThemeContext";
-import VideoContext from "contexts/VideoContext";
+import ContentContext from "contexts/ContentContext";
+import SearchContext from "contexts/SearchContext";
 
 const Searchbar = () => {
-  const { getVideos } = useContext(VideoContext);
-  const [inputText, setInputText] = useState(null);
+  const { getContents } = useContext(ContentContext);
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
 
   const { isDarkMode } = useContext(ThemeContext);
 
@@ -20,9 +21,9 @@ const Searchbar = () => {
           isDarkMode ? "bg-gray-800 text-white" : "bg-gray-300 text-gray-500"
         }  appearance-none focus:outline-none font-medium`}
         placeholder={"Search..."}
-        onChange={(e) => setInputText(e.target.value)}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div onClick={() => getVideos(inputText)} className="w-5 cursor-pointer">
+      <div onClick={() => getContents(searchTerm)} className="w-5 cursor-pointer">
         <LensIcon />
       </div>
     </div>
