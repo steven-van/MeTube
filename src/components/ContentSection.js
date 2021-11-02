@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import VideoItem from "components/UI/VideoItem";
+import VideoItem from "components/VideoItem";
 import ContentContext from "contexts/ContentContext";
-import ChannelItem from "components/UI/ChannelItem";
-import PlaylistItem from "components/UI/PlaylistItem";
+import ChannelItem from "components/ChannelItem";
+import PlaylistItem from "components/PlaylistItem";
 
 const VideoSection = () => {
   const { state, contentType } = useContext(ContentContext);
