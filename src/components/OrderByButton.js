@@ -55,6 +55,7 @@ const OrderByButton = React.forwardRef(({}, ref) => {
         >
           <div className={`${isDarkMode ? "text-white" : "text-gray-500"}`}>
             <button
+              onClick={() => setDropdown(false)}
               className={`block w-full text-left px-4 py-1 rounded-t-md ${
                 isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
               }`}
@@ -62,6 +63,7 @@ const OrderByButton = React.forwardRef(({}, ref) => {
               Number of views
             </button>
             <button
+              onClick={() => setDropdown(false)}
               className={`block w-full text-left px-4 py-1 rounded-b-md ${
                 isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
               }`}
