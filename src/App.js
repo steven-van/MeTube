@@ -15,7 +15,7 @@ const App = () => {
   const getContents = async (searchTerm, type = "video") => {
     const responseSnippet = await youtube().get("/search", {
       params: {
-        q: searchTerm,
+        q: searchTerm.trim(),
         type: type,
       },
     });
