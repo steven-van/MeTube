@@ -47,8 +47,9 @@ const App = () => {
               videoTitle: responseSnippet.data.items[i].snippet.title,
               videoThumbnail:
                 responseSnippet.data.items[i].snippet.thumbnails.medium.url,
-              publicationDate:
-                responseSnippet.data.items[i].snippet.publishTime,
+              uploadDate: new Date(
+                responseSnippet.data.items[i].snippet.publishTime
+              ),
               videoDesc: responseSnippet.data.items[i].snippet.description,
               channelTitle: responseSnippet.data.items[i].snippet.channelTitle,
               viewCount: responseStats.data.items[j].statistics.viewCount,

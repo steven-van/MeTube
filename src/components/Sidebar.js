@@ -23,7 +23,7 @@ const Sidebar = () => {
       })
       .from(filterButtonRef.current, { y: "100%", opacity: 0, duration: 0.5 })
       .from(orderByButtonRef.current, { y: "100%", opacity: 0, duration: 0.5 });
-  }, [isDarkMode]);
+  }, []);
   return (
     <div
       className={`relative h-full w-2/5 lg:w-1/5 ${

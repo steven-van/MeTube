@@ -4,6 +4,7 @@ import Modal from "components/UI/Modal";
 import Youtube from "react-youtube";
 
 const VideoItem = ({ video }) => {
+  const uploadDate = video.uploadDate && video.uploadDate.toLocaleDateString();
   const { isDarkMode } = useContext(ThemeContext);
   const [isShown, setShown] = useState(false);
   return (
@@ -39,6 +40,22 @@ const VideoItem = ({ video }) => {
               }`}
             >
               {video.viewCount} views
+            </p>
+          </div>
+          <div className="flex justify-between">
+            <p
+              className={`font-medium overflow-ellipsis overflow-hidden whitespace-nowrap ${
+                isDarkMode ? "text-gray-400" : "text-gray-500"
+              }`}
+            >
+              Uploaded on {uploadDate}
+            </p>
+            <p
+              className={`font-medium overflow-ellipsis overflow-hidden whitespace-nowrap ${
+                isDarkMode ? "text-gray-400" : "text-gray-500"
+              }`}
+            >
+              {video.likeCount} likes
             </p>
           </div>
         </div>

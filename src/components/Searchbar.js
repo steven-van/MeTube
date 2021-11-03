@@ -26,7 +26,7 @@ const Searchbar = () => {
           setContentType("video");
         }}
       />
-      <div className="w-5 cursor-pointer">
+      <div className="w-5">
         <LensIcon />
       </div>
     </div>

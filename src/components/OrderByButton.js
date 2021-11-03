@@ -14,7 +14,7 @@ const OrderByButton = React.forwardRef(({}, ref) => {
 
   const orderByDate = (videos) => {
     const sortedVideos = [...videos].sort((a, b) =>
-      a.publicationDate < b.publicationDate ? 1 : -1
+      a.uploadDate < b.uploadDate ? 1 : -1
     );
     console.log(sortedVideos);
     setContents([...sortedVideos]);

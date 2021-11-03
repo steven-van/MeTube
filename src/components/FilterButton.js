@@ -2,13 +2,11 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import FilterIcon from "components/UI/FilterIcon";
 import ThemeContext from "contexts/ThemeContext";
 import ContentContext from "contexts/ContentContext";
-import SearchContext from "contexts/SearchContext";
 
 const FilterButton = React.forwardRef(({}, ref) => {
   const { isDarkMode } = useContext(ThemeContext);
-  const { getContents, contentType, setContentType } =
-    useContext(ContentContext);
-  const { searchTerm } = useContext(SearchContext);
+  const { contentType, setContentType } = useContext(ContentContext);
+
   const [isDropdown, setDropdown] = useState(false);
   const handleClick = () => {
     setDropdown(!isDropdown);
