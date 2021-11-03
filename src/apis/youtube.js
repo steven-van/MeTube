@@ -1,5 +1,5 @@
 import axios from "axios";
-const KEY = "AIzaSyBGJcIRFeQZyB4y8iqf_94NRWCl5xlmrdM";
+const KEY = "AIzaSyBSKB46I-Wrtaam8ZhlMIxik-GH64Yz4UM";
 
 const youtube = (part = "snippet") => {
   return axios.create({
