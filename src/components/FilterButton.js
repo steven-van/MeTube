@@ -65,11 +65,10 @@ const FilterButton = React.forwardRef(({}, ref) => {
           >
             <button
               onClick={() =>
-                contentType !== "video"
-                  ? (setContentType("video"),
-                    getContents(searchTerm, "video"),
-                    setDropdown(false))
-                  : ""
+                contentType !== "video" &&
+                (setContentType("video"),
+                getContents(searchTerm, "video"),
+                setDropdown(false))
               }
               className={`block w-full text-left px-4 py-1 rounded-t-md hover:bg-gray-600 ${
                 isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"

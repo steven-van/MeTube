@@ -3,7 +3,7 @@ import ThemeContext from "contexts/ThemeContext";
 import Modal from "components/UI/Modal";
 import Youtube from "react-youtube";
 
-const VideoItem = ({ video, videoStats }) => {
+const VideoItem = ({ video }) => {
   const { isDarkMode } = useContext(ThemeContext);
   const [isShown, setShown] = useState(false);
   return (
@@ -12,8 +12,8 @@ const VideoItem = ({ video, videoStats }) => {
         <img
           onClick={() => setShown(true)}
           className="cursor-pointer rounded-lg w-full h-full"
-          src={video.snippet.thumbnails.medium.url}
-          alt={video.snippet.description}
+          src={video.videoThumbnail}
+          alt={video.videoDesc}
         />
         <div>
           <p
@@ -21,7 +21,7 @@ const VideoItem = ({ video, videoStats }) => {
               isDarkMode ? "text-white" : "text-gray-700"
             }`}
           >
-            {video.snippet.title}
+            {video.videoTitle}
           </p>
           <div className="flex justify-between">
             <p
@@ -29,21 +29,21 @@ const VideoItem = ({ video, videoStats }) => {
                 isDarkMode ? "text-gray-400" : "text-gray-500"
               }`}
             >
-              {video.snippet.channelTitle}
+              {video.channelTitle}
             </p>
             <p
               className={`font-medium overflow-ellipsis overflow-hidden whitespace-nowrap ${
                 isDarkMode ? "text-gray-400" : "text-gray-500"
               }`}
             >
-              {videoStats.statistics.viewCount} views
+              {video.viewCount} views
             </p>
           </div>
         </div>
       </div>
       {isShown && (
         <Modal setShown={setShown}>
-          <Youtube videoId={video.id.videoId} />
+          <Youtube videoId={video.videoId} />
         </Modal>
       )}
     </>
