@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "components/Sidebar";
 import ThemeContext from "contexts/ThemeContext";
 import ContentContext from "contexts/ContentContext";
@@ -6,16 +6,17 @@ import ContentSection from "components/ContentSection";
 import youtube from "apis/youtube";
 import SearchContext from "contexts/SearchContext";
 
+var timeOutDebounce = undefined;
+
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => true);
   const [contents, setContents] = useState([]);
   const [contentType, setContentType] = useState("video");
   const [searchTerm, setSearchTerm] = useState("");
-
   const getContents = async (searchTerm, type = "video") => {
     const responseSnippet = await youtube().get("/search", {
       params: {
-        q: searchTerm.trim(),
+        q: searchTerm,
         type: type,
       },
     });
@@ -131,6 +132,18 @@ const App = () => {
     setContents([...contents]);
   };
 
+  useEffect(() => {
+    if (searchTerm.trim() !== "") {
+      if (timeOutDebounce !== undefined) {
+        clearTimeout(timeOutDebounce);
+      }
+
+      timeOutDebounce = setTimeout(() => {
+        getContents(searchTerm, contentType);
+      }, 700);
+    }
+  }, [searchTerm, contentType]);
+
   return (
     <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
       <div
@@ -142,7 +155,7 @@ const App = () => {
           value={{
             contents,
             setContents,
-            getContents,
+
             contentType,
             setContentType,
           }}
