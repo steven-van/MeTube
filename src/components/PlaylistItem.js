@@ -5,16 +5,19 @@ const PlaylistItem = ({ playlist }) => {
   const { isDarkMode } = useContext(ThemeContext);
   const playlistLink = `https://www.youtube.com/playlist?list=${playlist.playlistId}`;
   return (
-    <div className="w-48 h-32 xl:w-64 xl:h-40 2xl:w-80 2xl:h-44">
-      <div className="relative h-full">
-        <a href={playlistLink} target="_blank" rel="noopener noreferrer">
-          <img
-            className="rounded w-full h-full"
-            src={playlist.playlistThumbnail}
-            alt={playlist.playlistDesc}
-          />
-        </a>
-      </div>
+    <div className="flex flex-col w-48 h-32 w-44 h-36 xl:w-64 xl:h-44 2xl:w-80 2xl:h-52">
+      <a
+        className="flex-1 overflow-auto"
+        href={playlistLink}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          className="rounded w-full h-full"
+          src={playlist.playlistThumbnail}
+          alt={playlist.playlistDesc}
+        />
+      </a>
 
       <div className="flex justify-between">
         <p

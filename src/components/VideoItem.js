@@ -8,13 +8,15 @@ const VideoItem = ({ video }) => {
   const [isShown, setShown] = useState(false);
   return (
     <>
-      <div className="w-48 h-32 xl:w-64 xl:h-40 2xl:w-80 2xl:h-44">
-        <img
-          onClick={() => setShown(true)}
-          className="cursor-pointer rounded-lg w-full h-full"
-          src={video.videoThumbnail}
-          alt={video.videoDesc}
-        />
+      <div className="flex flex-col w-44 h-36 xl:w-64 xl:h-44 2xl:w-80 2xl:h-52">
+        <div className="flex-1 overflow-auto">
+          <img
+            onClick={() => setShown(true)}
+            className="cursor-pointer rounded-lg w-full h-full"
+            src={video.videoThumbnail}
+            alt={video.videoDesc}
+          />
+        </div>
         <div>
           <p
             className={`overflow-ellipsis overflow-hidden whitespace-nowrap font-medium ${

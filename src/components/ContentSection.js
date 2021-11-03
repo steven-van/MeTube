@@ -32,7 +32,7 @@ const ContentSection = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-wrap justify-start flex-row space-x-10 space-y-16 overflow-y-auto">
+    <div className="flex-1 flex flex-wrap justify-start flex-row space-x-10 space-y-4 overflow-y-auto">
       <div />
       {renderContents(contentType)}
     </div>
