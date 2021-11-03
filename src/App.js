@@ -20,8 +20,6 @@ const App = () => {
       },
     });
 
-    console.log(responseSnippet.data.items);
-
     let contents = [];
 
     if (type === "video") {
@@ -36,8 +34,6 @@ const App = () => {
           id: videoIds,
         },
       });
-
-      console.log(responseStats.data.items);
 
       for (let i = 0; i < responseSnippet.data.items.length; i++) {
         for (let j = 0; j < responseStats.data.items.length; j++) {
@@ -74,8 +70,6 @@ const App = () => {
           id: channelIds,
         },
       });
-
-      console.log(responseStats.data.items);
 
       for (let i = 0; i < responseSnippet.data.items.length; i++) {
         for (let j = 0; j < responseStats.data.items.length; j++) {
@@ -114,8 +108,6 @@ const App = () => {
         }
       );
 
-      console.log(responseContentDetails.data.items);
-
       for (let i = 0; i < responseSnippet.data.items.length; i++) {
         for (let j = 0; j < responseContentDetails.data.items.length; j++) {
           if (
@@ -135,7 +127,7 @@ const App = () => {
         }
       }
     }
-
+    console.log(contents);
     setContents([...contents]);
   };
 
