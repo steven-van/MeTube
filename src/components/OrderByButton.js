@@ -1,15 +1,58 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import OrderByIcon from "components/UI/OrderByIcon";
 import ThemeContext from "contexts/ThemeContext";
+import ContentContext from "contexts/ContentContext";
 
 const OrderByButton = React.forwardRef(({}, ref) => {
+  const { contents, setContents, contentType } = useContext(ContentContext);
   const { isDarkMode } = useContext(ThemeContext);
   const [isDropdown, setDropdown] = useState(false);
   const handleClick = () => {
     setDropdown(!isDropdown);
   };
-
   const dropdownRef = useRef();
+
+  const orderByDate = (videos) => {
+    const sortedVideos = [...videos].sort((a, b) =>
+      a.publicationDate < b.publicationDate ? 1 : -1
+    );
+    console.log(sortedVideos);
+    setContents([...sortedVideos]);
+  };
+
+  const orderByViewCount = (videos) => {
+    const sortedVideos = [...videos].sort((a, b) => b.viewCount - a.viewCount);
+    console.log(sortedVideos);
+    setContents([...sortedVideos]);
+  };
+
+  const orderByLikeCount = (videos) => {
+    const sortedVideos = [...videos].sort((a, b) => b.likeCount - a.likeCount);
+    console.log(sortedVideos);
+    setContents([...sortedVideos]);
+  };
+
+  const orderBySubscriberCount = (videos) => {
+    const sortedVideos = [...videos].sort(
+      (a, b) => b.subscriberCount - a.subscriberCount
+    );
+    console.log(sortedVideos);
+    setContents([...sortedVideos]);
+  };
+
+  const orderByItemCount = (videos) => {
+    const sortedVideos = [...videos].sort((a, b) => b.itemCount - a.itemCount);
+    console.log(sortedVideos);
+    setContents([...sortedVideos]);
+  };
+
+  const orderByVideoCount = (videos) => {
+    const sortedVideos = [...videos].sort(
+      (a, b) => b.videoCount - a.videoCount
+    );
+    console.log(sortedVideos);
+    setContents([...sortedVideos]);
+  };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -54,22 +97,84 @@ const OrderByButton = React.forwardRef(({}, ref) => {
           }`}
         >
           <div className={`${isDarkMode ? "text-white" : "text-gray-500"}`}>
-            <button
-              onClick={() => setDropdown(false)}
-              className={`block w-full text-left px-4 py-1 rounded-t-md ${
-                isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
-              }`}
-            >
-              Number of views
-            </button>
-            <button
-              onClick={() => setDropdown(false)}
-              className={`block w-full text-left px-4 py-1 rounded-b-md ${
-                isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
-              }`}
-            >
-              Upload date
-            </button>
+            {contentType === "video" && (
+              <>
+                <button
+                  onClick={() => {
+                    orderByViewCount(contents);
+                    setDropdown(false);
+                  }}
+                  className={`block w-full text-left px-4 py-1 rounded-t-md ${
+                    isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
+                  }`}
+                >
+                  View count
+                </button>
+                <button
+                  onClick={() => {
+                    orderByDate(contents);
+                    setDropdown(false);
+                  }}
+                  className={`block w-full text-left px-4 py-1 rounded-b-md ${
+                    isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
+                  }`}
+                >
+                  Upload date
+                </button>
+                <button
+                  onClick={() => {
+                    orderByLikeCount(contents);
+                    setDropdown(false);
+                  }}
+                  className={`block w-full text-left px-4 py-1 rounded-b-md ${
+                    isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
+                  }`}
+                >
+                  Like count
+                </button>
+              </>
+            )}
+            {contentType === "channel" && (
+              <>
+                <button
+                  onClick={() => {
+                    orderBySubscriberCount(contents);
+                    setDropdown(false);
+                  }}
+                  className={`block w-full text-left px-4 py-1 rounded-b-md ${
+                    isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
+                  }`}
+                >
+                  Subscriber count
+                </button>
+                <button
+                  onClick={() => {
+                    orderByVideoCount(contents);
+                    setDropdown(false);
+                  }}
+                  className={`block w-full text-left px-4 py-1 rounded-b-md ${
+                    isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
+                  }`}
+                >
+                  Video count
+                </button>
+              </>
+            )}
+            {contentType === "playlist" && (
+              <>
+                <button
+                  onClick={() => {
+                    orderByItemCount(contents);
+                    setDropdown(false);
+                  }}
+                  className={`block w-full text-left px-4 py-1 rounded-b-md ${
+                    isDarkMode ? "hover:bg-gray-600" : "hover:bg-red-200"
+                  }`}
+                >
+                  Video count
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
