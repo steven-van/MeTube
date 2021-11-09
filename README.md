@@ -22,9 +22,13 @@ This project is a React Single Page Application using Youtube's Data API v3 to s
 
 Once you've cloned the repository, you must then install the project's dependencies
 
-### `npm install`
+```
+npm install
+```
 
 And finally, you can launch the project on ```localhost:3000```
 
-### `npm start`
+```
+npm start
+```
 
