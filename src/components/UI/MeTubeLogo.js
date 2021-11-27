@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import centralPayLogoWhite from "assets/centralpay-logo-white.png";
-import centralPayLogo from "assets/centralpay-logo.png";
+import meTubeLogoWhite from "assets/metube-logo-white.png";
+import meTubeLogo from "assets/metube-logo.png";
 import ThemeContext from "contexts/ThemeContext";
 
 const CentralPayLogo = () => {
@@ -8,7 +8,7 @@ const CentralPayLogo = () => {
   return (
     <img
       alt="CentralPay Logo White"
-      src={isDarkMode ? centralPayLogoWhite : centralPayLogo}
+      src={isDarkMode ? meTubeLogoWhite : meTubeLogo}
     />
   );
 };

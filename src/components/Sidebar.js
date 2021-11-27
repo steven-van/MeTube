@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import CentralPayLogo from "components/UI/CentralPayLogo";
+import CentralPayLogo from "components/UI/MeTubeLogo";
 import Searchbar from "components/Searchbar";
 import FilterButton from "components/FilterButton";
 import OrderByButton from "components/OrderByButton";
