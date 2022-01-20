@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import CentralPayLogo from "components/UI/MeTubeLogo";
+import MeTubeLogo from "components/UI/MeTubeLogo";
 import Searchbar from "components/Searchbar";
 import FilterButton from "components/FilterButton";
 import OrderByButton from "components/OrderByButton";
@@ -31,7 +31,7 @@ const Sidebar = () => {
       } flex flex-col items-center pt-5`}
     >
       <div className="w-32 lg:w-40 2xl:w-48">
-        <CentralPayLogo />
+        <MeTubeLogo />
       </div>
       <div ref={searchBarRef} className="mt-12 w-4/5">
         <Searchbar />
